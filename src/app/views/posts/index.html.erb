@@ -1,17 +1,19 @@
+<h1>Posts</h1>
+
 <p> <%= notice %> </p>
 
-<p>
+<ul>
+  <li> <%= link_to("Accueil", "/home") %> </li>
   <% if user_signed_in?  %>
-    Compté connecté : <%= current_user.email %>
-    <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+  <li>Compté connecté : <%= current_user.email %> </li>
+  <li> <%= link_to("Voir les films", "/movies") %> </li>
+  <li> <%= link_to("Voir les posts", "/posts") %> </li>
+  <li> <%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
   <% else  %>
-    <%= link_to("Login", new_user_session_path) %>
-  <br>
-    <%= link_to("Inscription", new_user_registration_path) %>
+  <li>  <%= link_to("Login", new_user_session_path) %></li>
+  <li>  <%= link_to("Inscription", new_user_registration_path) %></li>
   <% end  %>
-</p>
-
-<h1>Posts</h1>
+</ul>
 
 <table>
 

@@ -1,5 +1,4 @@
-
-<h1>Hello world</h1>
+<h1>Utilisateurs</h1>
 
 <p> <%= notice %> </p>
 
@@ -15,3 +14,27 @@
   <li>  <%= link_to("Inscription", new_user_registration_path) %></li>
   <% end  %>
 </ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Date création</th>
+      <th>Admin</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.created_at %></td>
+        <% if user.admin? %>
+        <td><%= user.admin %></td>
+        <% else %>
+        <td> false </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
