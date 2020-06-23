@@ -8,6 +8,11 @@ class MoviesController < ApplicationController
     @movies = Movie.all
   end
 
+  def rent_show
+    authorize! :manage, Movie
+    @movies = Movie.all
+  end
+
   # GET /movies/1
   # GET /movies/1.json
   def show
@@ -44,7 +49,7 @@ class MoviesController < ApplicationController
   # PATCH/PUT /movies/1
   # PATCH/PUT /movies/1.json
   def update
-    authorize! :manage, Movie
+    authorize! :update, Movie
     respond_to do |format|
       if @movie.update(movie_params)
         format.html { redirect_to @movie, notice: 'Movie was successfully updated.' }
@@ -54,6 +59,20 @@ class MoviesController < ApplicationController
         format.json { render json: @movie.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def rent
+    authorize! :update, Movie
+    @movie = Movie.find(params[:id])
+    @movie.update status: true
+    redirect_to '/movies'
+  end
+
+  def unrent
+    authorize! :manage, Movie
+    @movie = Movie.find(params[:id])
+    @movie.update status: false
+    redirect_to '/movies'
   end
 
   # DELETE /movies/1

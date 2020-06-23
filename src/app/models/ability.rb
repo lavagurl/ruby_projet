@@ -12,6 +12,7 @@ class Ability
       can :manage, User
     else
       can :read, Movie
+      can :update, Movie
     end
 
 

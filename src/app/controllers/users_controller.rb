@@ -23,6 +23,20 @@ class UsersController < ApplicationController
 
     end
 
+    def change_status_admin
+      authorize! :update, Movie
+      @user = User.find(params[:id])
+      @user.update admin: true
+      redirect_to '/users'
+    end
+
+    def change_status_user
+      authorize! :manage, Movie
+      @user = User.find(params[:id])
+      @user.update admin: false
+      redirect_to '/users'
+    end
+
 # POST /users
 # POST /users.json
     def create
