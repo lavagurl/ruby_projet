@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<% user ||= current_user %>
+
+<h1>Hello world</h1>
+
+
+<ul>
+  <li> <%= link_to("Accueil", "/home") %> </li>
+  <% if user_signed_in?  %>
+  <li>Compté connecté : <%= current_user.email %> </li>
+  <li> <%= link_to("Voir les films", "/movies") %> </li>
+  <li> <%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+  <% if user.admin? %>
+  <li> <%= link_to("Utilisateurs", "/users") %> </li>
+  <% end %>
+  <% else  %>
+  <li>  <%= link_to("Login", new_user_session_path) %></li>
+  <li>  <%= link_to("Inscription", new_user_registration_path) %></li>
+  <% end  %>
+</ul>

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Movies</h1>
+
+<ul>
+  <li> <%= link_to("Accueil", "/home") %> </li>
+  <% if user_signed_in?  %>
+  <li>Compté connecté : <%= current_user.email %> </li>
+  <li> <%= link_to("Voir les films", "/movies") %> </li>
+  <li> <%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+  <li> <%= link_to("Utilisateurs", "/users") %> </li>
+  <% else  %>
+  <li>  <%= link_to("Login", new_user_session_path) %></li>
+  <li>  <%= link_to("Inscription", new_user_registration_path) %></li>
+  <% end  %>
+</ul>
+<p>
+  <strong>Title:</strong>
+  <%= @movie.title %>
+</p>
+
+<p>
+  <strong>Producer:</strong>
+  <%= @movie.producer %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @movie.description %>
+</p>
+
+<p>
+  <strong>Release date:</strong>
+  <%= @movie.release_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Back', movies_path %>
